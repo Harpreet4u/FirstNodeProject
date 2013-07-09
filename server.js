@@ -2,12 +2,19 @@
 
 var http = require("http");
 
-http.createServer(function (request, response) {
+function start() {
+	function onRequest (request, response) { 
 
-	response.writeHead(200, {"Content-type": "text/plain"});
-	response.write("Hello World!");
-	response.end();
+		console.log("Request Received.");
+		response.writeHead(200, {"Content-Type": "text/plain"});
+		response.write("Hello World!");
+		response.end();
 
-}).listen(8080);
+	}
 
-console.log("Server running at http://localhost:8080/....");
+	http.createServer(onRequest).listen(8080);
+	console.log("Server running at http://localhost:8080/....");
+}
+
+
+exports.start = start;
